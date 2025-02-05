@@ -2,7 +2,10 @@
 
 function page() {
   return (
-    <div>page</div>
+    <div>
+<h1>Cabins</h1>
+
+    </div>
   )
 }
 
