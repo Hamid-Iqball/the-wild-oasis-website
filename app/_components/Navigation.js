@@ -4,12 +4,11 @@ import Link from "next/link"
 function Navigation() {
   return (
     <div>
-        <ul className="flex ">
+        <ul className="">
             <li>
                 <Link href="/">Home</Link>
             </li>
             <li>
-
             <Link href="/cabins">Cabins</Link>
             </li>
             <li>
