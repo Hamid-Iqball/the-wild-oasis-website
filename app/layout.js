@@ -1,11 +1,13 @@
+import Logo from "./_components/Logo";
 import Navigation from "./_components/Navigation";
 
 export default function RootLayout({children}){
   return <html>
     <body>
-      <nav>
+      <header>
+        <Logo/>
         <Navigation/>
-      </nav>
+      </header>
       <main>
         {children}
       </main>
