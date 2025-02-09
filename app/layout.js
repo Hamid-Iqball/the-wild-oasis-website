@@ -1,5 +1,6 @@
 import Logo from "./_components/Logo";
 import Navigation from "./_components/Navigation";
+import "@/app/_styles/globals.css"
 
 export default function RootLayout({children}){
   return <html>
@@ -11,6 +12,9 @@ export default function RootLayout({children}){
       <main>
         {children}
       </main>
+      <footer>
+        Copyright by the wild oasis
+      </footer>
     </body>
   </html>
 }
