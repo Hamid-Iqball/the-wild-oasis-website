@@ -4,8 +4,10 @@ import { getCabins } from "../_lib/data-service";
 import CabinList from "@/app/_components/CabinList";
 import Spinner from "../_components/Spinner";
 
-export default async function Page() {
-  // CHANGE
+export default  function Page() {
+  
+
+  //The Suspense needs to be outside the component that does the asynchronus work that is why we moved the getting cabins to the CabinList.
 
 
 
