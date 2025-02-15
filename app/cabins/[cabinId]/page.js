@@ -1,5 +1,6 @@
-import { getCabin } from "@/app/_lib/data-service";
+import { getCabin, getCabins } from "@/app/_lib/data-service";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
+import { Cabin } from "next/font/google";
 import Image from "next/image";
 
 // generating metaData dynamically
@@ -13,8 +14,20 @@ export async function generateMetadata ({params})
 
 }
 
-export default async function Page({params}) {
+//If there is any dynamic rendereing in Next js app then this code to tell NEXT js about that using the generateStatsicParams function
+export async function generateStaticParams(){
+  const cabins = await getCabins()
 
+  const ids = cabins.map((cabin)=>(
+   { cabinId:String(cabin.id)}
+  ))
+
+  return ids
+}
+
+
+export default async function Page({params}) {
+console.log(params.cabinId)
     const cabin = await getCabin(params.cabinId)
   const { id, name, maxCapacity, regularPrice, discount, image, description } =
     cabin;
