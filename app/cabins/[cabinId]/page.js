@@ -14,7 +14,7 @@ export async function generateMetadata ({params})
 
 }
 
-//If there is any dynamic rendereing in Next js app then this code to tell NEXT js about that using the generateStatsicParams function
+//If there is any dynamic rendereing in Next js app then this code to tell NEXT js about that using the generateStatsicParams function to make it static
 export async function generateStaticParams(){
   const cabins = await getCabins()
 
