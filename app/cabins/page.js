@@ -5,7 +5,7 @@ import CabinList from "@/app/_components/CabinList";
 import Spinner from "../_components/Spinner";
 
 //This really needs to be some value not the computed expression.
-export const revalidate = 0
+export const revalidate = 3600 //This value must always be in seconds
 export default  function Page() {
   
 
