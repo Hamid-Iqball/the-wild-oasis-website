@@ -4,10 +4,13 @@ import { getCabins } from "../_lib/data-service";
 import CabinList from "@/app/_components/CabinList";
 import Spinner from "../_components/Spinner";
 
+//This really needs to be some value not the computed expression.
+export const revalidate = 0
 export default  function Page() {
   
 
   //The Suspense needs to be outside the component that does the asynchronus work that is why we moved the getting cabins to the CabinList.
+
 
 
 
