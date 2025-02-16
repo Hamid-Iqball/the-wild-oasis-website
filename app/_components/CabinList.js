@@ -16,7 +16,7 @@ export default async function CabinList({filter}) {
         displayedCabins = cabins.filter((cabin)=>cabin.maxCapacity<=3)
         break
       case "medium":
-        displayedCabins = cabins.filter((cabin)=>cabin.maxCapacity <=7)
+        displayedCabins = cabins.filter((cabin)=>cabin.maxCapacity >=4 && cabin.maxCapacity<=7)
         break
 
       case "large":
@@ -30,6 +30,7 @@ export default async function CabinList({filter}) {
 
 
 
+    
     
   return (
     <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-14">

@@ -2,7 +2,8 @@
 import { Suspense } from "react";
 import { getCabins } from "../_lib/data-service";
 import CabinList from "@/app/_components/CabinList";
-import Spinner from "../_components/Spinner";
+import Spinner from "@/app/_components/Filter";
+import Filter from "@/app/_components/Filter";
 
 //This really needs to be some value not the computed expression.
 export const revalidate = 3600 //This value must always be in seconds
@@ -25,7 +26,10 @@ export default  function Page({searchParams}) {
         away from home. The perfect spot for a peaceful, calm vacation. Welcome
         to paradise.
       </p>
+      <div className="flex justify-end mb-8">
+    <Filter/>
 
+      </div>
      <Suspense fallback={<Spinner/>}>
       <CabinList filter={filter}/>
      </Suspense>
