@@ -2,7 +2,7 @@
 import { Suspense } from "react";
 import { getCabins } from "../_lib/data-service";
 import CabinList from "@/app/_components/CabinList";
-import Spinner from "@/app/_components/Filter";
+import Spinner from "@/app/_components/Spinner";
 import Filter from "@/app/_components/Filter";
 
 //This really needs to be some value not the computed expression.
@@ -27,10 +27,11 @@ export default  function Page({searchParams}) {
         to paradise.
       </p>
       <div className="flex justify-end mb-8">
-    <Filter/>
+    
+      <Filter/>
 
       </div>
-     <Suspense fallback={<Spinner/>}>
+     <Suspense fallback={<Spinner/>} key={filter}>
       <CabinList filter={filter}/>
      </Suspense>
   
