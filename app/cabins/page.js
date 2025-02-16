@@ -6,13 +6,11 @@ import Spinner from "../_components/Spinner";
 
 //This really needs to be some value not the computed expression.
 export const revalidate = 3600 //This value must always be in seconds
-export default  function Page() {
+export default  function Page({searchParams}) {
   
+  const filter = searchParams?.capacity ?? "all"
 
   //The Suspense needs to be outside the component that does the asynchronus work that is why we moved the getting cabins to the CabinList.
-
-
-
 
   return (
     <div>
@@ -29,7 +27,7 @@ export default  function Page() {
       </p>
 
      <Suspense fallback={<Spinner/>}>
-      <CabinList/>
+      <CabinList filter={filter}/>
      </Suspense>
   
     </div>
