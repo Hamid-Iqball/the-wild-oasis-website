@@ -28,7 +28,7 @@ function DateSelector() {
   return (
     <div className="flex flex-col justify-between">
       <DayPicker
-        className="pt-12 place-self-center"
+        className="pt-12 place-self-center flex"
         mode="range"
         min={minBookingLength + 1}
         max={maxBookingLength}
