@@ -8,15 +8,18 @@ const initalState = {
     from:undefined, to:undefined
 }
 function ReservationProvider({children}){
-    const [range , setRange] = useState(initalState)
+const [range , setRange] = useState(initalState)
 
+const resetRange = ()=>{
+    setRange(initalState)
+}
 
- return <ReservationContext.Provider value={{range,setRange}}>
+ return <ReservationContext.Provider value={{range,setRange, resetRange}}>
     {children}
  </ReservationContext.Provider>
 }
 
-
+//Custom Hook for context
 function useReservation(){
     const context = useContext(ReservationContext)
     if(context===undefined) throw new Error("Context was used outside provider")
