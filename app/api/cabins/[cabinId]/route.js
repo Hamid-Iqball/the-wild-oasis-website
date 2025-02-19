@@ -11,4 +11,4 @@ export async function GET(request, {params}){
 
      return Response.json({message:"Cabin could not be found"})
   }
-}
+} 
