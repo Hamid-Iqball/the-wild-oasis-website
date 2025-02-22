@@ -30,8 +30,9 @@ function DateSelector({settings , bookedDates , cabin}) {
 
   return (
     <div className="flex flex-col justify-between">
+  
       <DayPicker
-        className="pt-12 place-self-center flex"
+        className="pt-12 w-56 flex justify-between"
         mode="range"
         onSelect={setRange}
         selected={range}
@@ -45,7 +46,7 @@ function DateSelector({settings , bookedDates , cabin}) {
       />
 
       <div className="flex items-center justify-between px-8 bg-accent-500 text-primary-800 h-[72px]">
-        <div className="flex items-baseline gap-6">
+        <div className="flex items-baseline gap-2">
           <p className="flex gap-2 items-baseline">
             {discount > 0 ? (
               <>
