@@ -1,10 +1,11 @@
 import { auth } from "../_lib/auth"
 
 export const metadata = {
-  title:"Account"
+  title:"Guest area"
 }
 export default async function page() {
   const session = await auth()
+
   const firstName = session.user.name.split(" ")
   return (
     <div>

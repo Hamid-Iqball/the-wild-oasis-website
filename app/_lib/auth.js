@@ -28,6 +28,12 @@ const authConfig = {
                 return false
             }
         },
+        async session({session,user}){
+        const guest = await getGuest(session.user.email)
+        session.user.guestId = guest.id //Adding the guestID from the supabase to the session
+
+        return session;
+        }
     },
     pages:{
        signIn:"/login"
