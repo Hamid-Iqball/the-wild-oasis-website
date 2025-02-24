@@ -8,6 +8,7 @@ function UpdateProfileForm({guest,children}) {
     const [count, setCount] = useState()
     const {fullName, email,nationalID, countryFlag, nationality}  = guest
  
+    //There are two types of validation, one is time validation after certian time the cache will revalidate and the data will chnage, second one is the manual/on-demand validation where we validate the cache immediatly
     
   return (
     //Invoking the server action

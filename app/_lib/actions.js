@@ -1,6 +1,7 @@
 "use server";
 
 
+import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "./auth";
 import { supabase } from "./supabase";
 
@@ -8,6 +9,8 @@ import { supabase } from "./supabase";
 //1.The user that is invoking this function has the authorization of doing the action.
 //2. We also need to treat all the inputs as unsaf.
 
+ //There are two types of validation, one is time validation after certian time the cache will revalidate and the data will chnage, second one is the manual/on-demand validation where we validate the cache immediatly
+    
 export async function updateProfile(formData){
     const session = await auth()
     if(!session) throw new Error("You must be logged in ")
@@ -33,6 +36,8 @@ export async function updateProfile(formData){
     console.error(error);
     throw new Error('Guest could not be updated');
   }
+
+  revalidatePath("/account/profile") // All the data below this path will be revalidate
 
 }
 export async function signInAction(){
