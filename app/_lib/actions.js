@@ -4,6 +4,7 @@
 import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "./auth";
 import { supabase } from "./supabase";
+import { getBookings } from "./data-service";
 
 //here are we on the backend we need to ensure two things
 //1.The user that is invoking this function has the authorization of doing the action.
@@ -48,6 +49,13 @@ export async function deleteReservation(bookingId){
   const session = await auth()
   if (!session) throw new Error("You must be logged in to delete a reservation")
 
+    //Verification implementations 
+    const guestBookings = await getBookings(session.user.guestId)
+    const guestBookingIds = guestBookings.map((booking)=>booking.id)
+    if(!guestBookingIds.includes(bookingId)){
+      throw new Error ("Your are not allowed yo delete this booking")
+    }
+  
 
   const {  error } = await supabase.from('bookings').delete().eq('id', bookingId);
 
