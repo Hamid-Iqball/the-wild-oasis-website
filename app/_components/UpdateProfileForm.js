@@ -2,6 +2,7 @@
 import { useState } from "react"
 import { updateProfile } from "../_lib/actions"
 import { useFormStatus } from "react-dom"
+import SubmitButton from "./SubmitButton"
 
 
 
@@ -9,7 +10,6 @@ function UpdateProfileForm({guest,children}) {
    
     const {fullName, email,nationalID, countryFlag, nationality}  = guest
     
-    //This is the new hook in react , and this hook must be used in a component that rendered inside a form, not a components that simply contains a form.
     return (
       //Invoking the server action
       <form action={updateProfile}
@@ -52,25 +52,18 @@ function UpdateProfileForm({guest,children}) {
       <label htmlFor="nationalID">National ID number</label>
       <input
       defaultValue={nationalID}
-        name="nationalID"
-        className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
-        />
+      name="nationalID"
+      className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
+      />
     </div>
 
     <div className="flex justify-end items-center gap-6">
-    <Button/>
+   <SubmitButton >Update Profile </SubmitButton>
     </div>
   </form>
   )
 }
 
-//We will use this component inside the form where we have used the useFormStatus()
-function Button (){
-   const {pending} = useFormStatus()
-  return   <button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300"
-  disabled={pending}>
- {pending ? "Updating":"Update profile"}
-</button>
-}
+
 
 export default UpdateProfileForm
