@@ -1,13 +1,20 @@
-export default function Page({params}) {
+import { getBooking, getCabin } from "@/app/_lib/data-service";
+
+export default async function Page({params}) {
   
   // CHANGE
-  const reservationId = params?.bookinId;
-  const maxCapacity = 23;
+  const {bookingId} = params
+
+  const {observations, numGuests , cabinId} = await getBooking(bookingId)
+
+ const {maxCapacity} = await getCabin(cabinId)
+
+  // const maxCapacity = 23;
 
   return (
     <div>
       <h2 className="font-semibold text-2xl text-accent-400 mb-7">
-        Edit Reservation #{reservationId}
+        Edit Reservation #{bookingId}
       </h2>
 
       <form className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
@@ -17,6 +24,7 @@ export default function Page({params}) {
             name="numGuests"
             id="numGuests"
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
+            defaultValue={numGuests}
             required
           >
             <option value="" key="">
@@ -36,6 +44,7 @@ export default function Page({params}) {
           </label>
           <textarea
             name="observations"
+            defaultValue={observations}
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
           />
         </div>
