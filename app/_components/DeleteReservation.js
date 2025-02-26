@@ -6,6 +6,7 @@ import SpinnerMini from './SpinnerMini';
 
 function DeleteReservation({ bookingId }) {
 
+  //This is what we need to do if we want to call server action directly from a button and not from a form.
  const [isPending, startTransition] = useTransition()
 
  function handleDelete(){
