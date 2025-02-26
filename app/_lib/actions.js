@@ -53,7 +53,7 @@ export async function deleteReservation(bookingId){
     const guestBookings = await getBookings(session.user.guestId)
     const guestBookingIds = guestBookings.map((booking)=>booking.id)
     if(!guestBookingIds.includes(bookingId)){
-      throw new Error ("Your are not allowed yo delete this booking")
+      throw new Error ("Your are not allowed to delete this booking")
     }
   
 
