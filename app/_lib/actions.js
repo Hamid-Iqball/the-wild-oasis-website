@@ -65,6 +65,24 @@ export async function deleteReservation(bookingId){
 }
 
 
+export async function updateReservation (formData){
+//The server action do not have any access to the URL that is why we are sending data in formData.
+  console.log(formData)
+  
+//   const { data, error } = await supabase
+//   .from('bookings')
+//   .update(updatedFields)
+//   .eq('id', id)
+//   .select()
+//   .single();
+
+// if (error) {
+//   console.error(error);
+//   throw new Error('Booking could not be updated');
+// }
+
+}
+
 
 export async function signInAction(){
     await signIn("google",{
