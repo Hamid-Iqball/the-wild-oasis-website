@@ -1,5 +1,5 @@
 "use client"
-import { differenceInDays, isPast, isWithinInterval } from "date-fns"; 
+import { differenceInDays, isPast, isSameDay, isWithinInterval } from "date-fns"; 
 import { useState } from "react"; 
 import { DayPicker } from "react-day-picker"; 
 import "react-day-picker/dist/style.css"; 
@@ -26,10 +26,10 @@ function DateSelector({settings, bookedDates, cabin}) {
 
   return (
     <div className="flex flex-col">
-      <div className="flex justify-center items-center">
+    
 
       <DayPicker
-        className="pt-6 w-full"
+        className="pt-12 pl-10 place-self-center "
         mode="range"
         onSelect={setRange}
         selected={range}
@@ -38,14 +38,14 @@ function DateSelector({settings, bookedDates, cabin}) {
         fromMonth={new Date()}
         fromDate={new Date()}
         toYear={new Date().getFullYear() + 5}
-        disabled={(curDate)=>isPast(curDate)}
+        disabled={(curDate)=>isPast(curDate) || bookedDates.some(date=>isSameDay(date,curDate))} 
         captionLayout="dropdown"
-        numberOfMonths={1}
+        numberOfMonths={2}
         pagedNavigation
         showOutsideDays
         />
 
-        </div>
+      
       <div className="flex items-center justify-between px-8 bg-accent-500 text-primary-800 h-[72px]">
         <div className="flex items-baseline gap-2">
           <p className="flex gap-2 items-baseline">
