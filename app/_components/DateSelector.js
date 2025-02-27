@@ -1,9 +1,9 @@
 "use client"
-import { isWithinInterval } from "date-fns";
-import { useState } from "react";
-import { DayPicker } from "react-day-picker";
-import "react-day-picker/dist/style.css";
-import { useReservation } from "./ReservationContext";
+import { differenceInDays, isPast, isWithinInterval } from "date-fns"; 
+import { useState } from "react"; 
+import { DayPicker } from "react-day-picker"; 
+import "react-day-picker/dist/style.css"; 
+import { useReservation } from "./ReservationContext";  
 
 function isAlreadyBooked(range, datesArr) {
   return (
@@ -15,24 +15,21 @@ function isAlreadyBooked(range, datesArr) {
   );
 }
 
-
-function DateSelector({settings , bookedDates , cabin}) {
- const {range,setRange, resetRange} = useReservation()
-  // CHANGE
-  const regularPrice = 23;
-  const discount = 23;
-  const numNights = 23;
-  const cabinPrice = 23;
-  
+function DateSelector({settings, bookedDates, cabin}) {
+  const {range, setRange, resetRange} = useReservation()
+  const {regularPrice, discount} = cabin
+  const numNights = range.from && range.to ? differenceInDays(range.to, range.from) : 0
 
   // SETTINGS
-  const{ minBookingLength  ,maxBookingLength} = settings
+  const {minBookingLength, maxBookingLength} = settings
+  const cabinPrice = numNights * (regularPrice - discount)
 
   return (
-    <div className="flex flex-col justify-between">
-  
+    <div className="flex flex-col">
+      <div className="flex justify-center items-center">
+
       <DayPicker
-        className="pt-12 w-56 flex justify-between"
+        className="pt-6 w-full"
         mode="range"
         onSelect={setRange}
         selected={range}
@@ -41,10 +38,14 @@ function DateSelector({settings , bookedDates , cabin}) {
         fromMonth={new Date()}
         fromDate={new Date()}
         toYear={new Date().getFullYear() + 5}
+        disabled={(curDate)=>isPast(curDate)}
         captionLayout="dropdown"
-        numberOfMonths={2}
-      />
+        numberOfMonths={1}
+        pagedNavigation
+        showOutsideDays
+        />
 
+        </div>
       <div className="flex items-center justify-between px-8 bg-accent-500 text-primary-800 h-[72px]">
         <div className="flex items-baseline gap-2">
           <p className="flex gap-2 items-baseline">
